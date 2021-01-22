@@ -49,16 +49,14 @@ if __name__ == '__main__':
         gpu=True
     else:
         gpu=False
-    imagePath = "1.png"  # 临时存放目录
     c = 0
     cap = cv2.VideoCapture(voidPath)
     last_text = ''
     now_text = ''
     text = ''
     orc=Ocr(mobile)
-    #返回所有帧数
+    #返回帧率
     fps=int(cap.get(cv2.CAP_PROP_FPS))
-    #frames_num = cap.get(7)
     try:
         while (cap.isOpened()):
             t1=time.time()
@@ -74,13 +72,13 @@ if __name__ == '__main__':
                     try:
                         image = cv2.imread(save_path)
                         x, y = image.shape[0:2]
-                        image=cv2.resize(image, (int(y / 2), int(x / 2)))
+                        image=cv2.resize(image, (int(y ), int(x )))
                         cv2.imshow('Video Subtitle Extraction', image)
                         k = cv2.waitKey(60)
                         # q键退出
                         if (k & 0xff == ord('q')):
                             break
-                        os.remove(save_path)
+                        #os.remove(save_path)
                     except:
                         pass
 
